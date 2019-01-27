@@ -7,6 +7,7 @@
 
 import _Quill from 'quill'
 import quillEditor from './editor.vue'
+import './utils/polyfill';
 
 const Quill = window.Quill || _Quill
 const install = (Vue, globalOptions) => {

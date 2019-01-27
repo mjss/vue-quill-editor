@@ -1,0 +1,61 @@
+.ql-emoji {
+  &__palette-container {
+    position: absolute;
+    max-width: 356px;
+    z-index: 999;
+    box-shadow: 0 5px 10px rgba(0,0,0,.12);
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.15);
+  }
+
+  &__tabs {
+    background-color: #f7f7f7;
+    padding: 4px 4px 0;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+
+    ul {
+      list-style-type: none;
+    }
+  }
+
+  &__tab-item {
+    display: inline-table;
+    text-align: center;
+    width: 30px;
+    height: 100%;
+    min-height: 30px;
+    cursor: pointer;
+
+    &.is-active {
+      border-bottom: 2px solid #0366d6;
+    }
+
+    &:not(.is-active):hover {
+      border-bottom: 2px solid rgba(#0366d6, 0.3);
+    }
+  }
+
+  &__pane {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    max-height: 220px;
+    overflow-y: scroll;
+    padding: 2px;
+    background: #FFF;
+  }
+
+  &__pane-item {
+    cursor: pointer;
+    font-size: 24px;
+    height: 24px;
+    width: 24px;
+    line-height: 1.2;
+    padding: 4px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #84a8cc;
+    }
+  }
+}

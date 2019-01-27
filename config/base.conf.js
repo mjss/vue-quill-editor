@@ -1,43 +1,60 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const resolve = dir => path.join(__dirname, '..', dir)
-
-const env = process.env.NODE_ENV === 'testing'
-  ? { NODE_ENV: '"testing"' }
-  : { NODE_ENV: '"production"' }
 
 module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader"
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2
+            }
+          },
+          'resolve-url-loader',
+          "sass-loader"
+        ]
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {}
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')]
-      }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        include: /src/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }
+      },
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': env
+    new webpack.ProvidePlugin({
+      'window.Quill': 'quill/dist/quill.js',
+      'Quill': 'quill/dist/quill.js',
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
+    new VueLoaderPlugin()
   ]
 }
