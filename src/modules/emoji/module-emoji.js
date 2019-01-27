@@ -199,7 +199,7 @@ class ShortNameEmoji extends Module {
         'li', {},
         makeElement(
           'button', {type: "button"},
-          makeElement("span", {className: "ql-emoji-completion__item", innerHTML: emoji.code_decimal }),
+          makeElement("span", {className: "ql-emoji-completion__item", innerHTML: emoji.code_decimal}),
           makeElement('span', {className: "unmatched"}, emoji.shortname)
         )
       );
@@ -208,8 +208,8 @@ class ShortNameEmoji extends Module {
       // Events will be GC-ed with button on each re-render:
       buttons[i].addEventListener('keydown', handler(i, emoji));
       buttons[i].addEventListener("mousedown", () => this.close(emoji));
-      buttons[i].addEventListener("focus", () => this.focusedButton = i);
-      buttons[i].addEventListener("unfocus", () => this.focusedButton = null);
+      buttons[i].addEventListener("focus", () => { this.focusedButton = i });
+      buttons[i].addEventListener("unfocus", () => { this.focusedButton = null });
     });
 
     this.container.style.display = "block";
@@ -265,7 +265,7 @@ ShortNameEmoji.DEFAULTS = {
 
 function makeElement (tag, attrs, ...children) {
   const elem = document.createElement(tag);
-  Object.keys(attrs).forEach(key => elem[key] = attrs[key]);
+  Object.keys(attrs).forEach(key => { elem[key] = attrs[key] });
   children.forEach(child => {
     if (typeof child === "string")      { child = document.createTextNode(child); }
     elem.appendChild(child);

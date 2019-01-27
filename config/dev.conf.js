@@ -12,15 +12,6 @@ module.exports = merge(baseConfig, {
   entry: {
     'main': './examples/main.js'
   },
-  externals: {
-    quill: {
-        root: 'Quill',
-        commonjs: 'quill',
-        commonjs2: 'quill',
-        amd: 'quill'
-    },
-    'object-assign': 'object-assign'
-  },
   output: {
     path: path.resolve(__dirname, '../dist/examples'),
     publicPath: '/',
@@ -35,15 +26,12 @@ module.exports = merge(baseConfig, {
       inject: true
     }),
   ],
-  devtool: '#source-map',
+  devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     modules: [
       resolve('src'),
       resolve('node_modules')
-    ],
-    alias: {
-      'quill': 'quill/dist/quill.js',
-    }
+    ]
   }
 })

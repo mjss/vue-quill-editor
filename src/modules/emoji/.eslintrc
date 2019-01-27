@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "no-warning-comments": "off",
+    "no-restricted-globals": "off",
+    "func-style": "off",
+    "array-callback-return": "off"
+  }
+  
+}
